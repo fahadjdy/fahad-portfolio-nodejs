@@ -21,16 +21,41 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  const { email, password } = req.body;
-   const user = await UserModel.findOne(email );
-  if (!user) return res.status(400).json({ error: "Invalid credentials" });
+  try {
+    const { email, password } = req.body;
 
-  const match = await bcrypt.compare(password, user.password);
-  if (!match) return res.status(400).json({ error: "Invalid credentials" });
+    // Validate input
+    if (!email || !password) {
+      return res.status(400).json({ error: "Email and password are required" });
+    }
 
-  const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, {
-    expiresIn: "1d"
-  });
+    // Find user
+    const user = await UserModel.findOne(email);
+    if (!user) {
+      return res.status(400).json({ error: "Invalid credentials" });
+    }
 
-  res.json({ token, user: { id: user.id, email: user.email } });
+    // Compare password
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      return res.status(400).json({ error: "Invalid credentials" });
+    }
+
+    // Create token
+    const token = jwt.sign(
+      { id: user.id, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    res.json({
+      token,
+      user: { id: user.id, email: user.email }
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
 };
+

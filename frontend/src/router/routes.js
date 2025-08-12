@@ -1,18 +1,26 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import AllUsers from '../views/AllUsers.vue';
-import Todos from '../views/Todo.vue';
 
 const routes = [
   {
-    path: '/users',
-    name: 'AllUsers',
-    component: AllUsers,
+    path: '/',
+    name: 'Home',
+    component: () => import('../views/Home.vue'),
   },
   {
-    path: '/todos',
-    name: 'Todos',
-    component: Todos,
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login.vue'),
   },
+  {
+    path: '/admin/profile',
+    name: 'Profile',
+    component: () => import('../views/admin/Profile.vue'),
+  },
+  {
+    path: '/admin/experience',
+    name: 'Experience',
+    component: () => import('../views/admin/Experience.vue'),
+  }
 ];
 
 const router = createRouter({
