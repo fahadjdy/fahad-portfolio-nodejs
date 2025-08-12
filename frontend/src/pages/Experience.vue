@@ -28,11 +28,9 @@
     </ul>
   </div>
 </template>
-
 <script>
-import Header from '../layout/Header.vue'
-
-import axios from 'axios';
+import Header from '../components/layout/Header.vue';
+import experienceService from '../services/experienceService';
 
 export default {
   data() {
@@ -47,25 +45,32 @@ export default {
     }
   },
   methods: {
-
     async addExperience() {
-      const response = await axios.post('http://localhost:8889/fahad-jadiya/experience', this.experience);
-      this.experiences.push(response.data);
-      this.experience = {
-        designation: '',
-        office: '',
-        year: '',
-        description: '',
-      };
+      try {
+        const newExperience = await experienceService.add(this.experience);
+        this.experiences.push(newExperience);
+        this.experience = {
+          designation: '',
+          office: '',
+          year: '',
+          description: '',
+        };
+      } catch (error) {
+        console.error("Error adding experience:", error);
+      }
     }
   },
   async mounted() {
-    const response = await axios.get('http://localhost:8889/fahad-jadiya/experience');
-    console.log(response.data);
-    this.experiences = response.data.data;
-  },
-    components: {
-        Header
+    try {
+      const data = await experienceService.getAll();
+      this.experiences = data.data;
+    } catch (error) {
+      console.error("Error loading experiences:", error);
     }
-}
+  },
+  components: {
+    Header
+  }
+};
 </script>
+

@@ -1,9 +1,7 @@
 <template>
-  <Header />
-
   <div>
     <h2>Edit Profile</h2>
-    <form @submit.prevent="updateProfile">
+    <form @submit.prevent="saveProfile">
       <div>
         <label for="name">Name:</label>
         <input type="text" v-model="profile.name" id="name" />
@@ -34,10 +32,8 @@
     <p v-if="success" class="text-green-500">{{ success }}</p>
   </div>
 </template>
-
 <script>
-import Header from '../layout/Header.vue';
-import axios from 'axios';
+import { getProfile, updateProfile } from '../../services/profileService';
 
 export default {
   data() {
@@ -62,41 +58,22 @@ export default {
       if (this.image) {
         const reader = new FileReader();
         reader.onload = e => {
-          this.imagePreview = e.target.result; // Live preview
+          this.imagePreview = e.target.result;
         };
         reader.readAsDataURL(this.image);
       }
     },
-    async updateProfile() {
+    async saveProfile() {
       try {
-        const formData = new FormData();
-        formData.append('name', this.profile.name);
-        formData.append('email', this.profile.email);
-        formData.append('contact', this.profile.contact);
-        formData.append('address', this.profile.address);
-        if (this.image) {
-          formData.append('image', this.image);
-        }
-
-        const token = localStorage.getItem('token');
-        const response = await axios.post(
-          `http://localhost:8889/fahad-jadiya/profile/edit/${this.profile.id}`,
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-              Authorization: `Bearer ${token}`
-            }
-          }
-        );
+        const response = await updateProfile(this.profile.id, {
+          ...this.profile,
+          image: this.image
+        });
 
         this.success = 'Profile updated successfully!';
-        
-        // ✅ Use image path from backend after upload
-        if (response.data.data?.image) {
-          this.imagePreview = `http://localhost:8889/public/${response.data.data.image}`;
+        if (response.data?.image) {
+          this.imagePreview = `http://localhost:8889/public/${response.data.image}`;
         }
-
       } catch (error) {
         this.error = error.response?.data?.message || 'Failed to update profile.';
       }
@@ -104,20 +81,15 @@ export default {
   },
   async mounted() {
     try {
-      const response = await axios.get('http://localhost:8889/fahad-jadiya/profile');
-      const profileData = response.data.data[0] || response.data;
+      const profileData = await getProfile();
       this.profile = profileData;
 
-      // ✅ Show existing DB image on page load
       if (this.profile.image) {
         this.imagePreview = `http://localhost:8889/public/${this.profile.image}`;
       }
     } catch (error) {
       this.error = 'Failed to load profile data.';
     }
-  },
-  components: {
-    Header
   }
 };
 </script>
