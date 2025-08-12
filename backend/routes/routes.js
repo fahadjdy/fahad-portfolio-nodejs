@@ -4,14 +4,18 @@ const EducationController = require("../controllers/EducationController");
 const ExperienceController = require("../controllers/ExperienceController");
 const SkillsController = require("../controllers/SkillsController");
 const uploadProfile = require('../config/multerProfile');
+const authController = require("../controllers/authController");
+const { authenticate } = require("../middlewares/auth");
 
+router.post("/register", authController.register);
+router.post("/login", authController.login);
 
 router.get("/profile",   (req, res) => {
   ProfileController.getProfile(req, res);
 });
 
 // must authenticate user before allowing profile edit
-router.put("/profile/edit/:id", uploadProfile.single('image'), (req, res) => {
+router.put("/profile/edit/:id", authenticate,uploadProfile.single('image'), (req, res) => {
   ProfileController.editProfile(req, res);
 });
 
@@ -27,8 +31,4 @@ router.get("/skills",   (req, res) => {
   SkillsController.getSkills(req, res);
 });
 
-
-// router.post('/create', uploadProfile.single('profileImage'), ProfileController.createUser);
-// router.put('/update/:id', uploadProfile.single('profileImage'), ProfileController.updateUser);
-// router.delete('/delete/:id', ProfileController.deleteUser);
 module.exports = router;

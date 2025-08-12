@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 12, 2025 at 07:05 AM
+-- Generation Time: Aug 12, 2025 at 08:23 AM
 -- Server version: 8.0.26
 -- PHP Version: 8.2.19
 
@@ -97,7 +97,7 @@ CREATE TABLE `profile` (
 --
 
 INSERT INTO `profile` (`id`, `name`, `image`, `email`, `contact`, `address`) VALUES
-(1, 'Fahad Iliyas Jadiya', 'assets/profile/1754981740832-205437471.jpeg', 'fahadjdy12@gmail.com', 7203070468, 'basu');
+(1, 'FHD', 'assets/profile/1754981740832-205437471.jpeg', 'fahad@example.com', 7203070468, 'Basu');
 
 -- --------------------------------------------------------
 
@@ -122,6 +122,26 @@ INSERT INTO `skill` (`id`, `name`, `image`, `status`, `created_at`, `updated_at`
 (1, 'html', '', 1, '2025-08-12 11:02:39', '2025-08-12 11:02:39'),
 (2, 'php', '', 1, '2025-08-12 11:02:51', '2025-08-12 11:02:51'),
 (3, 'css', '', 1, '2025-08-12 11:02:51', '2025-08-12 11:02:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`, `status`) VALUES
+(2, 'fahadjd12@gmail.com', '$2b$10$wJ.9SVIlzkMq0B9oAnPF7.OE5fkScG023Cu18fhbhk7yS96JPANKy', 1);
 
 --
 -- Indexes for dumped tables
@@ -152,6 +172,12 @@ ALTER TABLE `skill`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -177,6 +203,12 @@ ALTER TABLE `profile`
 -- AUTO_INCREMENT for table `skill`
 --
 ALTER TABLE `skill`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
