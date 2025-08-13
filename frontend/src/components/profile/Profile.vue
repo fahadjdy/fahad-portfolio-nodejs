@@ -1,37 +1,56 @@
 <template>
   <div>
     <h2>Edit Profile</h2>
+
     <form @submit.prevent="saveProfile">
+      <!-- Name -->
       <div>
         <label for="name">Name:</label>
-        <input type="text" v-model="profile.name" id="name" />
+        <input type="text" v-model="profile.name" id="name" autocomplete="name" />
       </div>
+
+      <!-- Email -->
       <div>
         <label for="email">Email:</label>
-        <input type="email" v-model="profile.email" id="email" />
+        <input type="email" v-model="profile.email" id="email" autocomplete="email" />
       </div>
+
+      <!-- Contact -->
       <div>
         <label for="contact">Contact:</label>
-        <input type="text" v-model="profile.contact" id="contact" />
+        <input type="tel" v-model="profile.contact" id="contact" autocomplete="tel" />
       </div>
+
+      <!-- Address -->
       <div>
         <label for="address">Address:</label>
-        <textarea v-model="profile.address" id="address"></textarea>
+        <textarea v-model="profile.address" id="address" rows="3"></textarea>
       </div>
+
+      <!-- Image -->
       <div>
         <label for="image">Profile Image:</label>
-        <input type="file" @change="handleImageUpload" id="image" />
-        <div v-if="imagePreview" class="mt-4">
-          <img :src="imagePreview" class="w-48 h-48 object-cover" />
+        <input type="file" @change="handleImageUpload" id="image" accept="image/*" />
+        <div v-if="imagePreview">
+          <img :src="imagePreview" alt="Profile preview" />
         </div>
       </div>
+
+      <!-- Submit -->
       <button type="submit">Update Profile</button>
     </form>
 
-    <p v-if="error" class="text-red-500">{{ error }}</p>
-    <p v-if="success" class="text-green-500">{{ success }}</p>
+    <!-- Messages -->
+    <transition name="fade">
+      <p v-if="error">{{ error }}</p>
+    </transition>
+    <transition name="fade">
+      <p v-if="success">{{ success }}</p>
+    </transition>
   </div>
 </template>
+
+
 <script>
 import { getProfile, updateProfile } from '../../services/profileService';
 
