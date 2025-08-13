@@ -1,17 +1,18 @@
 <template>
-  <Header />
-  <ProfileComponent />
-  <Footer />
+  <Base>
+    <ProfileComponent />
+    <Footer />
+  </Base>
 </template>
 
 <script>
-import Header from '../components/layout/Header.vue';
 import ProfileComponent from '../components/profile/Profile.vue';
 import Footer from '../components/layout/Footer.vue';
+import Base from '../components/layout/Base.vue';
 
 export default {
   components: {
-    Header,
+    Base,
     ProfileComponent,
     Footer
   }

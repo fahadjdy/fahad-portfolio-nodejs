@@ -1,34 +1,79 @@
 <template>
-  <div>
-    <!-- Header -->
-    <HeaderFile />
+  <div class="flex min-h-screen">
+   
 
-    <!-- Page content -->
-    <main>
-      <slot></slot>
-    </main>
+     <!-- Overlay for mobile -->
+    <div
+      v-if="!isDesktop"
+      class="fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 z-40"
+      :class="{
+        'opacity-0 pointer-events-none': !isSidebarOpen,
+        'opacity-100': isSidebarOpen
+      }"
+      @click="closeSidebar"
+    ></div>
 
-    <!-- Footer -->
-    <FooterFile />
+     <!-- Sidebar -->
+    <Sidebar
+      :isOpen="isSidebarOpen"
+      :showClose="!isDesktop"
+      class="z-40"
+      @close="closeSidebar"
+    />
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col min-h-screen transition-all duration-300" :class="{
+      'md:ml-64': isSidebarOpen && isDesktop,
+      'ml-0': !isSidebarOpen || !isDesktop
+    }">
+      <!-- Header with toggle button for mobile -->
+      <Header :showToggle="!isDesktop" @openSidebar="openSidebar" />
+
+      <!-- Page Content -->
+      <main class="flex-1 p-6">
+        <slot></slot>
+      </main>
+    </div>
   </div>
 </template>
 
 <script>
-import HeaderFile from './Header.vue';
+import Header from './Header.vue';
+import Sidebar from './Sidebar.vue';
 import FooterFile from './Footer.vue';
 
 export default {
   name: 'BaseLayout',
+  data() {
+    return {
+      isSidebarOpen: false,
+      isDesktop: false
+    };
+  },
+  mounted() {
+    this.checkScreen(); // run once immediately
+    window.addEventListener('resize', this.checkScreen);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.checkScreen);
+  },
+  methods: {
+    checkScreen() {
+      this.isDesktop = window.outerWidth >= 768;
+      this.isSidebarOpen = this.isDesktop; // open sidebar only on desktop
+    },
+    openSidebar() {
+      this.isSidebarOpen = !this.isSidebarOpen;
+    },
+    closeSidebar() {
+      this.isSidebarOpen = false;
+      
+    }
+  },
   components: {
-    HeaderFile,
+    Header,
+    Sidebar,
     FooterFile
   }
 };
 </script>
-
-<style scoped>
-main {
-  min-height: calc(100vh - 150px); /* Adjust according to header/footer height */
-  padding: 20px;
-}
-</style>

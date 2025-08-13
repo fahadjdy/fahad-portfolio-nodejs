@@ -1,5 +1,5 @@
 <template>
-    <Header />
+  <Sidebar/>
    <div class="max-w-lg mx-auto p-6 bg-white shadow-xl rounded-lg mt-10">
     <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">Experience</h2>
 
@@ -83,7 +83,7 @@
   </div>
 </template>
 <script>
-import Header from '../components/layout/Header.vue';
+import Sidebar from '../components/layout/Sidebar.vue';
 import experienceService from '../services/experienceService';
 
 export default {
@@ -123,7 +123,7 @@ export default {
     }
   },
   components: {
-    Header
+    Sidebar
   }
 };
 </script>

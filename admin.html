@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+  <style>
+    :root {
+      --main: #1A2A80;
+      --second: #3B38A0;
+      --third: #7A85C1;
+      --light: #B2B0E8;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<div class="flex min-h-screen">
+  <!-- Sidebar -->
+  <aside id="sidebar"
+         class="fixed z-50 top-0 left-0 w-64 h-full bg-[var(--main)] text-white transform -translate-x-full md:translate-x-0 transition-all duration-300 ease-in-out flex flex-col shadow-xl backdrop-blur-md">
+      <div class="p-6 text-2xl font-bold flex items-center justify-between border-b border-white/10">
+        <span>
+          <i class="fas fa-user-shield mr-2 text-[var(--light)]"></i>
+          Admin Panel
+        </span>
+        <button onclick="closeSidebar()" class="md:hidden text-white focus:outline-none">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+      <nav class="flex-1 px-4 py-4 space-y-2">
+        <a href="#" class="block py-2 px-3 flex items-center gap-2 rounded hover:bg-[var(--second)] transition-colors">
+          <i class="fas fa-tachometer-alt"></i>
+          <span>Dashboard</span>
+        </a>
+        <div>
+          <button onclick="toggleSubmenu()" class="w-full text-left py-2 px-3 rounded hover:bg-[var(--second)] flex items-center justify-between gap-2 transition-colors">
+            <div class="flex items-center gap-2">
+              <i class="fas fa-layer-group"></i>
+              <span>Menu</span>
+            </div>
+            <i id="submenu-icon" class="fas fa-chevron-down transition-transform"></i>
+          </button>
+          <div id="submenu" class="ml-8 border-l border-[var(--light)] pl-3 mt-1 space-y-1 hidden">
+            <a href="#" class="flex items-center gap-2 py-1 px-2 rounded hover:bg-[var(--third)] text-sm transition-colors">
+              <i class="fas fa-circle-notch text-xs"></i> Submenu 1
+            </a>
+            <a href="#" class="flex items-center gap-2 py-1 px-2 rounded hover:bg-[var(--third)] text-sm transition-colors">
+              <i class="fas fa-dot-circle text-xs"></i> Submenu 2
+            </a>
+          </div>
+        </div>
+        <a href="#" class="block py-2 px-3 flex items-center gap-2 rounded hover:bg-[var(--second)] transition-colors">
+          <i class="fas fa-cogs"></i>
+          <span>Settings</span>
+        </a>
+        <a href="#" class="block py-2 px-3 flex items-center gap-2 rounded hover:bg-red-500/80 transition-colors mt-8">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </a>
+      </nav>
+  </aside>
+
+  <!-- Overlay for mobile -->
+  <div id="overlay"
+       class="fixed inset-0 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none z-40 transition-all duration-300 md:hidden"
+       onclick="closeSidebar()"></div>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col md:ml-64 min-h-screen">
+    <!-- Topbar -->
+    <header class="bg-white shadow flex items-center justify-between px-6 py-4 sticky top-0 z-30">
+      <!-- Mobile menu button -->
+      <button onclick="openSidebar()" class="md:hidden text-[var(--main)] focus:outline-none">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+      <h1 class="text-xl font-semibold text-gray-700 flex items-center gap-2">
+        <i class="fas fa-home text-[var(--main)]"></i>
+        Dashboard
+      </h1>
+      <div class="relative flex items-center space-x-4">
+        <!-- Admin profile dropdown -->
+        <button id="profileBtn" onclick="toggleProfileMenu()" class="focus:outline-none flex items-center">
+          <img src="https://i.pravatar.cc/40" alt="Admin" class="w-10 h-10 rounded-full border-2 border-[var(--third)] shadow-sm">
+          <i class="fas fa-caret-down text-[var(--main)] ml-2"></i>
+        </button>
+        <!-- Dropdown menu -->
+        <div id="profileMenu" class="absolute right-0 top-14 mt-2 w-40 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 hidden z-50">
+          <a href="#"
+            class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+            <i class="fas fa-user mr-2"></i> Profile
+          </a>
+          <a href="#"
+            class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+            <i class="fas fa-sign-out-alt mr-2 text-red-500"></i> Logout
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="flex-1 p-6">
+      <div class="bg-white p-6 rounded-xl shadow transition-all">
+        <h2 class="text-lg font-semibold text-gray-800 flex gap-2 items-center">
+          <i class="fas fa-trophy text-yellow-500"></i>
+          Welcome to your dashboard!
+        </h2>
+        <p class="mt-2 text-gray-600">This is a modern, responsive admin interface using Tailwind CSS and FontAwesome—try it on mobile!</p>
+      </div>
+    </main>
+  </div>
+  
+</div>
+
+<script>
+  function openSidebar() {
+    document.getElementById('sidebar').classList.remove('-translate-x-full');
+    const overlay = document.getElementById('overlay');
+    overlay.classList.remove('opacity-0', 'pointer-events-none');
+    overlay.classList.add('opacity-100');
+  }
+
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.add('-translate-x-full');
+    const overlay = document.getElementById('overlay');
+    overlay.classList.remove('opacity-100');
+    overlay.classList.add('opacity-0');
+    setTimeout(() => {
+      overlay.classList.add('pointer-events-none');
+    }, 300);
+  }
+
+  function toggleSubmenu() {
+    const submenu = document.getElementById('submenu');
+    const icon = document.getElementById('submenu-icon');
+    submenu.classList.toggle('hidden');
+    icon.classList.toggle('rotate-180');
+  }
+
+  // Profile Dropdown
+  function toggleProfileMenu() {
+    const menu = document.getElementById('profileMenu');
+    menu.classList.toggle('hidden');
+    // Close on click outside
+    if (!menu.classList.contains('hidden')) {
+      setTimeout(() => {
+        window.addEventListener('click', closeProfileMenuOnClick);
+      }, 0);
+    }
+  }
+  function closeProfileMenuOnClick(e) {
+    const menu = document.getElementById('profileMenu');
+    const btn = document.getElementById('profileBtn');
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+      menu.classList.add('hidden');
+      window.removeEventListener('click', closeProfileMenuOnClick);
+    }
+  }
+
+  // Overlay reset on window resize
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      document.getElementById('sidebar').classList.remove('-translate-x-full');
+      document.getElementById('overlay').classList.add('opacity-0', 'pointer-events-none');
+    } else {
+      document.getElementById('sidebar').classList.add('-translate-x-full');
+    }
+  });
+</script>
+</body>
+</html>
