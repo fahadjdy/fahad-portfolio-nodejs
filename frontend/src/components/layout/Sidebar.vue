@@ -5,8 +5,8 @@
   >
     <div class="p-6 text-2xl font-bold flex items-center justify-between border-b border-white/10">
       <span>
-        <i class="fas fa-user-shield mr-2 text-[var(--light)]"></i>
-        Admin Panel
+        <!-- <i class="fas fa-user-shield mr-2 text-[var(--light)]"></i> -->
+        Fahad Jadiya
       </span>
     </div>
 
