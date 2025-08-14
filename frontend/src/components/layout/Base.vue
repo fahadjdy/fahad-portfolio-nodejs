@@ -27,7 +27,11 @@
       'ml-0': !isSidebarOpen || !isDesktop
     }">
       <!-- Header with toggle button for mobile -->
-      <Header :showToggle="!isDesktop" @openSidebar="openSidebar" @logout="logout"/>
+      <Header 
+          :showToggle="!isDesktop" 
+          @openSidebar="openSidebar" 
+          @logout="logout"
+        />
 
       <!-- Page Content -->
       <main class="flex-1 p-6">
