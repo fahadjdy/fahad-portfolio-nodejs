@@ -5,10 +5,12 @@ exports.authenticate = (req, res, next) => {
   if (!token) return res.status(401).json({ error: "Access denied" });
 
   try {
+    // Bearer <token>
     const decoded = jwt.verify(token.split(" ")[1], process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
+    req.user = decoded; // store user info
+    next(); // allow request
   } catch (err) {
-    res.status(400).json({ error: "Invalid token" });
+    // Token invalid or expired
+    return res.status(401).json({ error: "Invalid or expired token. Please login again." });
   }
 };

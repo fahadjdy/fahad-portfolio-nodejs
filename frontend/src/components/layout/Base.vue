@@ -27,7 +27,7 @@
       'ml-0': !isSidebarOpen || !isDesktop
     }">
       <!-- Header with toggle button for mobile -->
-      <Header :showToggle="!isDesktop" @openSidebar="openSidebar" />
+      <Header :showToggle="!isDesktop" @openSidebar="openSidebar" @logout="logout"/>
 
       <!-- Page Content -->
       <main class="flex-1 p-6">
@@ -55,6 +55,10 @@ export default {
   mounted() {
     this.checkScreen(); // run once immediately
     window.addEventListener('resize', this.checkScreen);
+
+    if(!localStorage.getItem('token')) {
+      this.$router.push('/login');
+    }
   },
   beforeUnmount() {
     window.removeEventListener('resize', this.checkScreen);
@@ -68,9 +72,13 @@ export default {
       this.isSidebarOpen = !this.isSidebarOpen;
     },
     closeSidebar() {
-      this.isSidebarOpen = false;
-      
+      this.isSidebarOpen = false;      
+    },
+    logout() {
+      localStorage.removeItem('token');
+      this.$router.push('/login');
     }
+
   },
   components: {
     Header,

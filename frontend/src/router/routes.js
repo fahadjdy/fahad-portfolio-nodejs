@@ -40,7 +40,7 @@ const routes = [
     path: '/admin/projects',
     name: 'Projects',
     component: () => import('../pages/Projects.vue'),
-  },
+  }
 ];
 
 const router = createRouter({

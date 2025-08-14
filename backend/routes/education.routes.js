@@ -4,11 +4,9 @@ const EducationController = require("../controllers/EducationController");
 const { authenticate } = require("../middlewares/auth");
 
 
-router.get("/", EducationController.getEducation);
-
-// ================ Authenticated user only ==================================
 router.use(authenticate);
 
+router.get("/", EducationController.getEducation);
 router.post("/add", EducationController.addEducation);
 router.put("/edit/:id", EducationController.editEducation);
 router.delete("/delete/:id", EducationController.deleteEducation);

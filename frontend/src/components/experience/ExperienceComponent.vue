@@ -213,7 +213,11 @@ export default {
         }
     },
     async mounted() {
-        await this.loadExperiences();
+        try {
+            await this.loadExperiences();
+        } catch (error) {
+            
+        }
     }
 };
 </script>

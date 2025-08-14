@@ -1,36 +1,52 @@
-// services/profileService.js
 import axios from 'axios';
 
 const API_URL = 'http://localhost:8889/fahad-jadiya/profile';
 
+const handleAuthError = (error) => {
+  if (error.response && error.response.status === 401) {
+    // Token invalid or expired → force logout
+    localStorage.removeItem('token');
+    window.location.href = '/login'; 
+  }
+  throw error; 
+};
+
 export const getProfile = async () => {
-  const response = await axios.get(API_URL);
-  return response.data.data[0] || response.data;
+  try {
+    const response = await axios.get(API_URL, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+    return response.data.data[0] || response.data;
+  } catch (err) {
+    handleAuthError(err);
+  }
 };
 
 export const updateProfile = async (id, profileData) => {
+  try {
+    const token = localStorage.getItem('token');
+    const formData = new FormData();
 
-  const token = localStorage.getItem('token');
+    formData.append('name', profileData.name);
+    formData.append('email', profileData.email);
+    formData.append('contact', profileData.contact);
+    formData.append('address', profileData.address);
 
-  const formData = new FormData();
-  formData.append('name', profileData.name);
-  formData.append('email', profileData.email);
-  formData.append('contact', profileData.contact);
-  formData.append('address', profileData.address);
+    if (profileData.image) {
+      formData.append('image', profileData.image);
+    }
 
-  if (profileData.image) {
-    formData.append('image', profileData.image);
-  }
-  const response = await axios.put(
-    `${API_URL}/edit/${id}`,
-    formData,
-    {
+    const response = await axios.put(`${API_URL}/edit/${id}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`
       }
-    }
-  );
+    });
 
-  return response.data;
+    return response.data;
+  } catch (err) {
+    handleAuthError(err);
+  }
 };

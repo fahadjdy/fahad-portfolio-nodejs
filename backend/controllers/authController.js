@@ -59,3 +59,9 @@ exports.login = async (req, res) => {
   }
 };
 
+
+exports.logout = (req, res) => {
+  
+  localStorage.removeItem('token'); // Clear token from local storage
+  window.location.href = '/login'; // Redirect to login page
+}

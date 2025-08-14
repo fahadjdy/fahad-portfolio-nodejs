@@ -5,7 +5,11 @@ const token = localStorage.getItem('token');
 
 export default {
   async getAll() {
-    const response = await axios.get(API_URL);
+    const response = await axios.get(API_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     return response.data;
   },
 

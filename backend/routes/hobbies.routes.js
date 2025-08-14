@@ -3,13 +3,9 @@ const router = require("express").Router();
 const HobbiesController = require("../controllers/HobbiesController");
 const { authenticate } = require("../middlewares/auth");
 
-// Get all hobbies
-router.get("/", HobbiesController.getHobbies);
-
-
-// ================ Authenticated user only ==================================
 router.use(authenticate);
 
+router.get("/", HobbiesController.getHobbies);
 router.post("/add", HobbiesController.addHobby);
 router.put("/edit/:id", HobbiesController.editHobby);
 router.delete("/delete/:id", HobbiesController.deleteHobby);
