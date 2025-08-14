@@ -33,6 +33,8 @@
       <main class="flex-1 p-6">
         <slot></slot>
       </main>
+      <!-- Footer -->
+      <Footer/>
     </div>
   </div>
 </template>
@@ -40,7 +42,7 @@
 <script>
 import Header from './Header.vue';
 import Sidebar from './Sidebar.vue';
-import FooterFile from './Footer.vue';
+import Footer from './Footer.vue';
 
 export default {
   name: 'BaseLayout',
@@ -73,7 +75,7 @@ export default {
   components: {
     Header,
     Sidebar,
-    FooterFile
+    Footer
   }
 };
 </script>
