@@ -33,6 +33,16 @@
         <span>Skills</span>
       </router-link>
 
+      <router-link to="/admin/projects" class="block py-2 px-3 flex items-center gap-2 rounded hover:bg-[var(--second)] transition-colors">
+        <i class="fas fa-project-diagram"></i>
+        <span>Projects</span>
+      </router-link>
+
+      <router-link to="/admin/profile" class="block py-2 px-3 flex items-center gap-2 rounded hover:bg-[var(--second)] transition-colors">
+        <i class="fas fa-cog"></i>
+        <span>Profile</span>
+      </router-link>
+
       <!-- Example submenu -->
       <div>
         <button

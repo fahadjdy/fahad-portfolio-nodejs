@@ -20,7 +20,27 @@ const routes = [
     path: '/admin/experience',
     name: 'Experience',
     component: () => import('../pages/Experience.vue'),
-  }
+  },
+  {
+    path: '/admin/education',
+    name: 'Education',
+    component: () => import('../pages/Education.vue'),
+  },
+  {
+    path: '/admin/skills',
+    name: 'Skills',
+    component: () => import('../pages/Skills.vue'),
+  },
+  {
+    path: '/admin/hobbies',
+    name: 'Hobbies',
+    component: () => import('../pages/Hobbies.vue'),
+  },
+  {
+    path: '/admin/projects',
+    name: 'Projects',
+    component: () => import('../pages/Projects.vue'),
+  },
 ];
 
 const router = createRouter({

@@ -11,7 +11,7 @@
 
     <h1 class="text-xl font-semibold text-gray-700 flex items-center gap-2">
       <i class="fas fa-home text-[var(--main)]"></i>
-      Dashboard
+      {{ currentRouteName }}
     </h1>
 
     <!-- Profile -->
@@ -48,6 +48,11 @@ export default {
   methods: {
     toggleProfileMenu() {
       this.isProfileMenuOpen = !this.isProfileMenuOpen;
+    }
+  },
+  computed: {
+    currentRouteName() {
+      return this.$route.name || 'Dashboard';
     }
   }
 };
