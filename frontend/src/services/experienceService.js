@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_URL = "http://localhost:8889/fahad-jadiya/experience";
+const token = localStorage.getItem('token');
 
 export default {
   async getAll() {
@@ -9,15 +10,27 @@ export default {
   },
 
   async add(experience) {
-    const response = await axios.post(API_URL+"/add", experience);
+    const response = await axios.post(API_URL+"/add", experience,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     return response.data;
   },
   async update(id, experience) {
-    const response = await axios.put(`${API_URL}/edit/${id}`, experience);
+    const response = await axios.put(`${API_URL}/edit/${id}`, experience,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     return response.data;
   },
   async delete(id) {
-    const response = await axios.delete(`${API_URL}/delete/${id}`);
+    const response = await axios.delete(`${API_URL}/delete/${id}`,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     return response.data;
   }
 };

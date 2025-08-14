@@ -1,17 +1,17 @@
 // routes/hobbies.routes.js
 const router = require("express").Router();
 const HobbiesController = require("../controllers/HobbiesController");
+const { authenticate } = require("../middlewares/auth");
 
 // Get all hobbies
 router.get("/", HobbiesController.getHobbies);
 
-// Add a new hobby
+
+// ================ Authenticated user only ==================================
+router.use(authenticate);
+
 router.post("/add", HobbiesController.addHobby);
-
-// Edit an existing hobby
 router.put("/edit/:id", HobbiesController.editHobby);
-
-// Delete a hobby
 router.delete("/delete/:id", HobbiesController.deleteHobby);
 
 module.exports = router;
