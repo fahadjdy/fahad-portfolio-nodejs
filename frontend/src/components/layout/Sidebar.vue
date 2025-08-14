@@ -11,10 +11,27 @@
     </div>
 
     <nav class="flex-1 px-4 py-4 space-y-2">
-      <a href="#" class="block py-2 px-3 flex items-center gap-2 rounded hover:bg-[var(--second)] transition-colors">
-        <i class="fas fa-tachometer-alt"></i>
-        <span>Dashboard</span>
-      </a>
+
+      <router-link to="/admin/experience" class="block py-2 px-3 flex items-center gap-2 rounded hover:bg-[var(--second)] transition-colors">
+        <i class="fas fa-award"></i>
+        <span>Experience</span>
+        
+      </router-link>
+
+      <router-link to="/admin/education" class="block py-2 px-3 flex items-center gap-2 rounded hover:bg-[var(--second)] transition-colors">
+        <i class="fas fa-book"></i>
+        <span>Education</span>
+      </router-link>
+
+      <router-link to="/admin/hobbies" class="block py-2 px-3 flex items-center gap-2 rounded hover:bg-[var(--second)] transition-colors">
+        <i class="fas fa-certificate"></i>
+        <span>Hobbies</span>
+      </router-link>
+
+      <router-link to="/admin/skills" class="block py-2 px-3 flex items-center gap-2 rounded hover:bg-[var(--second)] transition-colors">
+        <i class="fas fa-lightbulb"></i>
+        <span>Skills</span>
+      </router-link>
 
       <!-- Example submenu -->
       <div>

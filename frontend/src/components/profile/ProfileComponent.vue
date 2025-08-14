@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-lg mx-auto p-6 bg-white shadow-xl rounded-lg mt-10">
+  <div class="max-w-lg mx-auto p-6 bg-white shadow-xl rounded-lg">
     <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">Edit Profile</h2>
 
     <form @submit.prevent="saveProfile" class="space-y-5">

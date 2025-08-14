@@ -24,12 +24,12 @@
         v-show="isProfileMenuOpen"
         class="absolute right-0 top-14 mt-2 w-40 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 z-50"
       >
-        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+        <router-link to="/admin/profile" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
           <i class="fas fa-user mr-2"></i> Profile
-        </a>
-        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+        </router-link>
+        <router-link to="/admin/logout" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
           <i class="fas fa-sign-out-alt mr-2 text-red-500"></i> Logout
-        </a>
+        </router-link>
       </div>
     </div>
   </header>
