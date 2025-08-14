@@ -13,10 +13,11 @@ app.use(cors({
   credentials: false
 }));
 
-app.use(express.json());
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true })); 
 
 // Routes
-app.use("/fahad-jadiya", require("./routes/routes"));
+app.use("/fahad-jadiya", require("./routes"));
 
 app.use('/public', express.static('public'));
 

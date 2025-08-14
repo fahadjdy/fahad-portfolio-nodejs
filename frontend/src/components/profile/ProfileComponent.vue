@@ -8,8 +8,8 @@
         <!-- Name -->
         <div class="flex flex-col lg:flex-row gap-4">
           <div class="w-full">
-            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-            <input type="text" v-model="profile.name" id="name" autocomplete="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm
+            <label for="full_name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+            <input type="text" v-model="profile.full_name" id="full_name" autocomplete="full_name" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm
                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
                  transition duration-300" />
           </div>
@@ -23,10 +23,10 @@
           </div>
         </div>
 
-        <!-- Contact -->
+        <!-- Phone -->
         <div>
-          <label for="contact" class="block text-sm font-medium text-gray-700 mb-1">Contact</label>
-          <input type="tel" v-model="profile.contact" id="contact" autocomplete="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm
+          <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+          <input type="tel" v-model="profile.phone" id="phone" autocomplete="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm
                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
                  transition duration-300" />
         </div>

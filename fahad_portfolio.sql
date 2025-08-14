@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 12, 2025 at 08:23 AM
+-- Generation Time: Aug 14, 2025 at 07:47 AM
 -- Server version: 8.0.26
 -- PHP Version: 8.2.19
 
@@ -29,27 +29,25 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `education` (
   `id` int NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `university_name` varchar(100) NOT NULL,
-  `location` varchar(50) NOT NULL,
-  `year` varchar(50) NOT NULL,
-  `persantage` varchar(10) NOT NULL,
-  `sgpa` float(10,2) DEFAULT NULL,
-  `cgpa` float(10,2) DEFAULT NULL,
-  `order_sequence` int NOT NULL,
-  `description` text NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `school` varchar(255) NOT NULL,
+  `degree` varchar(255) NOT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `from_date` date NOT NULL,
+  `to_date` date DEFAULT NULL,
+  `is_current` tinyint(1) DEFAULT '0',
+  `grade` varchar(50) DEFAULT NULL,
+  `description` text,
+  `order_no` int DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `education`
 --
 
-INSERT INTO `education` (`id`, `name`, `university_name`, `location`, `year`, `persantage`, `sgpa`, `cgpa`, `order_sequence`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'S.S.C.', 'Mahatma Gandhi Vidhyalaya', 'Mumbai', '2013-14', '74.40%', NULL, NULL, 1, 'I have studient at mumbai school ', 1, '2025-08-12 11:08:52', '2025-08-12 11:08:52'),
-(2, 'H.S.C.', 'Adarsh Vidhyalaya Basu', 'Gujarat', '2015-16', '80%', NULL, NULL, 2, 'I Have studient at Adasrh vidhyalaya basu at gujarat', 1, '2025-08-12 11:11:43', '2025-08-12 11:11:43');
+INSERT INTO `education` (`id`, `school`, `degree`, `location`, `from_date`, `to_date`, `is_current`, `grade`, `description`, `order_no`, `created_at`, `updated_at`) VALUES
+(1, 'HNGU University', 'B.Sc. Computer Science', 'Ahmedabad, India', '2018-06-01', '2022-05-31', 0, '8.5 CGPA', 'Learned core computer science subjects, worked on various projects.', 1, '2025-08-14 06:31:17', '2025-08-14 06:32:09');
 
 -- --------------------------------------------------------
 
@@ -58,24 +56,47 @@ INSERT INTO `education` (`id`, `name`, `university_name`, `location`, `year`, `p
 --
 
 CREATE TABLE `experience` (
-  `id` int NOT NULL,
-  `designation` varchar(50) NOT NULL,
-  `office` varchar(50) NOT NULL,
-  `year` varchar(50) NOT NULL,
-  `description` text NOT NULL,
-  `order_sequence` int DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `id` int UNSIGNED NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `company` varchar(150) NOT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `from_date` date NOT NULL,
+  `to_date` date DEFAULT NULL,
+  `is_current` tinyint(1) DEFAULT '0',
+  `description` text,
+  `order_no` int UNSIGNED DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `experience`
 --
 
-INSERT INTO `experience` (`id`, `designation`, `office`, `year`, `description`, `order_sequence`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Internship', ' M. Tech websolutions', '2019-21', 'I have started my journy for web development ', 1, 1, '2025-08-12 11:45:27', '2025-08-12 11:45:27'),
-(2, 'PHP Developer', 'Namaste Hindustan', '2021-22', 'I have dveloped so many websites', 2, 1, '2025-08-12 11:46:47', '2025-08-12 11:46:47');
+INSERT INTO `experience` (`id`, `title`, `company`, `location`, `from_date`, `to_date`, `is_current`, `description`, `order_no`, `created_at`, `updated_at`) VALUES
+(2, 'Full Stack Developer', 'Techaxion Pvt Ltd', 'Ahmedabad, India', '2023-06-01', NULL, 1, 'Developed and maintained web applications using Laravel, Vue.js, and MySQL. Integrated REST APIs and optimized performance.', 1, '2025-08-14 06:21:48', '2025-08-14 06:21:48');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hobbies`
+--
+
+CREATE TABLE `hobbies` (
+  `id` int NOT NULL,
+  `name` varchar(255) NOT NULL COMMENT '(e.g., Photography, Reading)',
+  `description` text COMMENT 'Short description or details about the hobby',
+  `order_no` int DEFAULT '0' COMMENT 'Sorting order for display',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores personal hobbies for the portfolio';
+
+--
+-- Dumping data for table `hobbies`
+--
+
+INSERT INTO `hobbies` (`id`, `name`, `description`, `order_no`, `created_at`, `updated_at`) VALUES
+(1, 'Gaming', 'I like to hear musics', 1, '2025-08-14 06:44:22', '2025-08-14 06:44:44');
 
 -- --------------------------------------------------------
 
@@ -85,43 +106,44 @@ INSERT INTO `experience` (`id`, `designation`, `office`, `year`, `description`, 
 
 CREATE TABLE `profile` (
   `id` int NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `full_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `email` varchar(50) NOT NULL,
-  `contact` bigint NOT NULL,
-  `address` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `tagline` varchar(255) DEFAULT NULL COMMENT 'Short tagline or bio',
+  `dob` date DEFAULT NULL,
+  `age` int DEFAULT NULL COMMENT 'in years ',
+  `gender` enum('Male','Female','Other') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `address` varchar(255) NOT NULL,
+  `nationality` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `phone` bigint DEFAULT NULL,
+  `website` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `location_city` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `location_country` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores main profile information';
 
 --
 -- Dumping data for table `profile`
 --
 
-INSERT INTO `profile` (`id`, `name`, `image`, `email`, `contact`, `address`) VALUES
-(1, 'FHD', 'assets/profile/1754981740832-205437471.jpeg', 'fahad@example.com', 7203070468, 'Basu');
+INSERT INTO `profile` (`id`, `full_name`, `image`, `tagline`, `dob`, `age`, `gender`, `address`, `nationality`, `email`, `phone`, `website`, `location_city`, `location_country`, `created_at`, `updated_at`) VALUES
+(1, 'Fahad Iliyas Jadiya', 'assets/profile/1755155316936-8664275.jpeg', 'Full Stack Developer | AI Enthusiast', '1998-11-05', 27, 'Male', 'Meta', 'Indian', 'fahad@example.com', 919876543210, 'https://fahadportfolio.com', 'Ahmedabad', 'India', '2025-08-14 06:57:20', '2025-08-14 06:57:20');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `skill`
+-- Table structure for table `skills`
 --
 
-CREATE TABLE `skill` (
+CREATE TABLE `skills` (
   `id` int NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `skill`
---
-
-INSERT INTO `skill` (`id`, `name`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'html', '', 1, '2025-08-12 11:02:39', '2025-08-12 11:02:39'),
-(2, 'php', '', 1, '2025-08-12 11:02:51', '2025-08-12 11:02:51'),
-(3, 'css', '', 1, '2025-08-12 11:02:51', '2025-08-12 11:02:51');
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '(e.g., JavaScript, MySQL)',
+  `level` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '(e.g., Beginner, Expert, 90%)',
+  `order_no` int DEFAULT '0' COMMENT 'Sorting order for display on the portfolio',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores skills for portfolio display';
 
 -- --------------------------------------------------------
 
@@ -141,7 +163,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `status`) VALUES
-(2, 'fahadjd12@gmail.com', '$2b$10$wJ.9SVIlzkMq0B9oAnPF7.OE5fkScG023Cu18fhbhk7yS96JPANKy', 1);
+(2, 'fahadjdy12@gmail.com', '$2b$10$wJ.9SVIlzkMq0B9oAnPF7.OE5fkScG023Cu18fhbhk7yS96JPANKy', 1);
 
 --
 -- Indexes for dumped tables
@@ -160,15 +182,21 @@ ALTER TABLE `experience`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `hobbies`
+--
+ALTER TABLE `hobbies`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `profile`
 --
 ALTER TABLE `profile`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `skill`
+-- Indexes for table `skills`
 --
-ALTER TABLE `skill`
+ALTER TABLE `skills`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -191,7 +219,13 @@ ALTER TABLE `education`
 -- AUTO_INCREMENT for table `experience`
 --
 ALTER TABLE `experience`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `hobbies`
+--
+ALTER TABLE `hobbies`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `profile`
@@ -200,10 +234,10 @@ ALTER TABLE `profile`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `skill`
+-- AUTO_INCREMENT for table `skills`
 --
-ALTER TABLE `skill`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `skills`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

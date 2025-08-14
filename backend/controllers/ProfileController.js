@@ -24,28 +24,38 @@ const getProfile = async (req, res) => {
 
 const editProfile = async (req, res) => {
   try {
-    
     const { id } = req.params;
-    const { name, email, contact, address } = req.body;
 
+    // Get body fields safely
+    const profileData = { ...req.body };
+
+    // Check if profile exists
     const existingProfile = await ProfileModel.getProfileById(id);
     if (!existingProfile) {
-      return res.status(404).json({ status: 404, message: 'Profile not found', data: null });
+      return res.status(404).json({ status: 404, message: "Profile not found" });
     }
 
-    let image = existingProfile.image;
+    // Handle image update
     if (req.file) {
-      if (image && fs.existsSync(path.join(__dirname, '../public', image))) {
-        fs.unlinkSync(path.join(__dirname, '../public', image));
+      // Delete old image if exists
+      if (existingProfile.image) {
+        const oldPath = path.join(__dirname, "../public", existingProfile.image);
+        if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
       }
-      image = `assets/profile/${req.file.filename}`;
+      profileData.image = `assets/profile/${req.file.filename}`;
     }
 
-    const updatedProfile = await ProfileModel.updateProfile(id, { name, email, contact, address, image });
-    res.status(200).json({ status: 200, message: 'Profile updated successfully', data: updatedProfile });
-  } catch (err) {
-    console.error('Error updating profile:', err);
-    res.status(500).json({ status: 500, message: 'Failed to update profile', data: null });
+    // Update DB
+    const updatedProfile = await ProfileModel.updateProfile(id, profileData);
+
+    res.status(200).json({
+      status: 200,
+      message: "Profile updated successfully",
+      data: updatedProfile
+    });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).json({ status: 500, message: "Failed to update profile" });
   }
 };
 

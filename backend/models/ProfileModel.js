@@ -1,7 +1,12 @@
 // models/ProfileModel.js
 const db = require('./index');
 
-const allowedFields = ['name', 'email', 'contact', 'address', 'image']; 
+// Only these fields will be allowed for update
+const allowedFields = [
+  "full_name", "tagline", "dob", "age", "gender","address", "nationality",
+  "email", "phone", "website", "location_city", "location_country", "image"
+];
+
 
 const ProfileModel = {
     async getProfile() {
@@ -15,7 +20,6 @@ const ProfileModel = {
     },
 
     async updateProfile(id, profileData) {
-        
         const filteredData = {};
         for (const field of allowedFields) {
             if (profileData[field] !== undefined) {
@@ -31,6 +35,7 @@ const ProfileModel = {
         if (result.affectedRows === 0) {
             throw new Error('Profile not found');
         }
+
         return this.getProfileById(id);
     }
 };
