@@ -5,7 +5,7 @@ const allowedFields = [`id`,`title`, `company`, `location`, `from_date`, `to_dat
 
 const ExperienceModel = {
     async getExperience() {
-        const [rows] = await db.query('SELECT * FROM experience');
+        const [rows] = await db.query('SELECT * FROM experience order by order_no desc');
         return rows;
     },
 
@@ -13,6 +13,16 @@ const ExperienceModel = {
         const [rows] = await db.query('SELECT * FROM experience WHERE id = ?', [id]);
         return rows[0];
     },
+    async addExperience(experienceData) {
+        const filteredData = {};
+        for (const field of allowedFields) {
+            if (experienceData[field] !== undefined) {
+                filteredData[field] = experienceData[field];
+            }
+        }        
+        const [result] = await db.query('INSERT INTO experience SET ?', [filteredData]);
+        return this.getExperienceById(result.insertId);
+    },  
     async updateExperience(id, experienceData) {
         
         const filteredData = {};

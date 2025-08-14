@@ -9,7 +9,15 @@ export default {
   },
 
   async add(experience) {
-    const response = await axios.post(API_URL, experience);
+    const response = await axios.post(API_URL+"/add", experience);
+    return response.data;
+  },
+  async update(id, experience) {
+    const response = await axios.put(`${API_URL}/edit/${id}`, experience);
+    return response.data;
+  },
+  async delete(id) {
+    const response = await axios.delete(`${API_URL}/delete/${id}`);
     return response.data;
   }
 };
