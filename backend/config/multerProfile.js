@@ -15,15 +15,22 @@ const storage = multer.diskStorage({
     cb(null, uploadFolder);
   },
   filename: function (req, file, cb) {
-    const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    cb(null, uniqueName + path.extname(file.originalname));
+    // Clean original filename (remove spaces, special chars)
+    const originalName = file.originalname.replace(/\s+/g, '_');
+    const timestamp = Date.now();
+
+    const customName = `${timestamp}_${originalName}`;
+    cb(null, customName);
   }
 });
 
 // Optional: Filter for image files only
 const fileFilter = (req, file, cb) => {
-  const isImage = file.mimetype.startsWith('image/');
-  cb(null, isImage);
+  if (file.mimetype.startsWith('image/')) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only image files are allowed!'), false);
+  }
 };
 
 const uploadProfile = multer({ storage, fileFilter });

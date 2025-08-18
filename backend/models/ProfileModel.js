@@ -3,8 +3,8 @@ const db = require('./index');
 
 // Only these fields will be allowed for update
 const allowedFields = [
-  "full_name", "tagline", "dob", "age", "gender","address", "nationality",
-  "email", "phone", "website", "location_city", "location_country", "image"
+  "full_name", "about", "tagline", "dob", "age", "gender","address", "nationality",
+  "email", "phone", "website", "location_city", "location_country", "image" , "favicon" , "logo"
 ];
 
 

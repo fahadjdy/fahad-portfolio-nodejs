@@ -29,13 +29,22 @@ export const updateProfile = async (id, profileData) => {
     const token = localStorage.getItem('token');
     const formData = new FormData();
 
-    formData.append('name', profileData.name);
+    formData.append('full_name', profileData.full_name);
     formData.append('email', profileData.email);
-    formData.append('contact', profileData.contact);
+    formData.append('phone', profileData.phone);
     formData.append('address', profileData.address);
+    formData.append('about', profileData.about);
 
     if (profileData.image) {
       formData.append('image', profileData.image);
+    }
+    
+    if (profileData.favicon) {
+      formData.append('favicon', profileData.favicon);
+    }
+
+    if (profileData.logo) {
+      formData.append('logo', profileData.logo);
     }
 
     const response = await axios.put(`${API_URL}/edit/${id}`, formData, {
