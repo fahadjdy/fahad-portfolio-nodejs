@@ -8,3 +8,14 @@ export function formatDate(date) {
 
   return `${day}-${month}-${year}`;
 }
+
+
+// New helper for <input type="date">
+export function formatDateForInput(date) {
+  if (!date) return "";
+  const d = new Date(date);
+  const month = String(d.getMonth() + 1).padStart(2, "0"); // 01-12
+  const day = String(d.getDate()).padStart(2, "0");       // 01-31
+  const year = d.getFullYear();
+  return `${year}-${month}-${day}`; // YYYY-MM-DD
+}

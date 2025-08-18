@@ -6,5 +6,6 @@ router.use("/educations", require("./education.routes"));
 router.use("/experience", require("./experience.routes"));
 router.use("/skills", require("./skills.routes"));
 router.use("/hobbies", require("./hobbies.routes"));
+router.use("/projects", require("./projects.routes"));
 
 module.exports = router;

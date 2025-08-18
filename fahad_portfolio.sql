@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 14, 2025 at 07:49 AM
+-- Generation Time: Aug 18, 2025 at 11:20 AM
 -- Server version: 8.0.26
 -- PHP Version: 8.2.19
 
@@ -74,7 +74,7 @@ CREATE TABLE `experience` (
 --
 
 INSERT INTO `experience` (`id`, `title`, `company`, `location`, `from_date`, `to_date`, `is_current`, `description`, `order_no`, `created_at`, `updated_at`) VALUES
-(2, 'Full Stack Developer', 'Techaxion Pvt Ltd', 'Ahmedabad, India', '2023-06-01', NULL, 1, 'Developed and maintained web applications using Laravel, Vue.js, and MySQL. Integrated REST APIs and optimized performance.', 1, '2025-08-14 06:21:48', '2025-08-14 06:21:48');
+(3, 'Web Developer', 'Namaste HIndustan', ' Ahmedabad ', '2021-10-01', '2022-11-08', 0, 'I was working as web developer.', 2, '2025-08-14 08:13:04', '2025-08-18 03:49:19');
 
 -- --------------------------------------------------------
 
@@ -96,7 +96,7 @@ CREATE TABLE `hobbies` (
 --
 
 INSERT INTO `hobbies` (`id`, `name`, `description`, `order_no`, `created_at`, `updated_at`) VALUES
-(1, 'Gaming', 'I like to hear musics', 1, '2025-08-14 06:44:22', '2025-08-14 06:44:44');
+(4, 'Gaming', NULL, NULL, '2025-08-18 11:07:58', '2025-08-18 11:07:58');
 
 -- --------------------------------------------------------
 
@@ -107,7 +107,10 @@ INSERT INTO `hobbies` (`id`, `name`, `description`, `order_no`, `created_at`, `u
 CREATE TABLE `profile` (
   `id` int NOT NULL,
   `full_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `about` varchar(255) NOT NULL,
   `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `logo` varchar(100) DEFAULT NULL,
+  `favicon` varchar(100) DEFAULT NULL,
   `tagline` varchar(255) DEFAULT NULL COMMENT 'Short tagline or bio',
   `dob` date DEFAULT NULL,
   `age` int DEFAULT NULL COMMENT 'in years ',
@@ -127,8 +130,37 @@ CREATE TABLE `profile` (
 -- Dumping data for table `profile`
 --
 
-INSERT INTO `profile` (`id`, `full_name`, `image`, `tagline`, `dob`, `age`, `gender`, `address`, `nationality`, `email`, `phone`, `website`, `location_city`, `location_country`, `created_at`, `updated_at`) VALUES
-(1, 'Fahad Iliyas Jadiya', 'assets/profile/1755155316936-8664275.jpeg', 'Full Stack Developer | AI Enthusiast', '1998-11-05', 27, 'Male', 'Meta', 'Indian', 'fahad@example.com', 919876543210, 'https://fahadportfolio.com', 'Ahmedabad', 'India', '2025-08-14 06:57:20', '2025-08-14 06:57:20');
+INSERT INTO `profile` (`id`, `full_name`, `about`, `image`, `logo`, `favicon`, `tagline`, `dob`, `age`, `gender`, `address`, `nationality`, `email`, `phone`, `website`, `location_city`, `location_country`, `created_at`, `updated_at`) VALUES
+(1, 'Fahad Iliyas Jadiya', 'I Am php Developer', 'assets/profile/1755495200286_profile.jpeg', 'assets/profile/1755496267261_profile.jpeg', 'assets/profile/1755495178274_IMG-20250804-WA0000.jpg', 'Full Stack Developer | AI Enthusiast', '1998-11-05', 27, 'Male', 'Meta', 'Indian', 'fahadjdy12@gmail.com', 7203070468, 'https://fahadportfolio.com', 'Ahmedabad', 'India', '2025-08-14 06:57:20', '2025-08-14 06:57:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `projects`
+--
+
+CREATE TABLE `projects` (
+  `id` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text,
+  `tech_stack` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `github` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `order_no` int DEFAULT '0',
+  `from_date` date DEFAULT NULL,
+  `to_date` date DEFAULT NULL,
+  `is_current` tinyint(1) DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `projects`
+--
+
+INSERT INTO `projects` (`id`, `title`, `description`, `tech_stack`, `link`, `github`, `image`, `order_no`, `from_date`, `to_date`, `is_current`, `created_at`, `updated_at`) VALUES
+(16, 'School Management System', 'This is school Management System at basu', 'Nodejs, Vue', 'http://www.fahad-jadiya.com', 'http://www.github.com/fahadjdy', 'assets/projects/Project_1755514873791_profile.jpeg', 1, '2025-08-05', '2025-08-29', 1, '2025-08-18 08:39:06', '2025-08-18 11:01:13');
 
 -- --------------------------------------------------------
 
@@ -144,6 +176,15 @@ CREATE TABLE `skills` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores skills for portfolio display';
+
+--
+-- Dumping data for table `skills`
+--
+
+INSERT INTO `skills` (`id`, `name`, `level`, `order_no`, `created_at`, `updated_at`) VALUES
+(3, 'Javascript', 'Advanced', 3, '2025-08-18 06:39:11', '2025-08-18 06:39:11'),
+(4, 'CSS', 'Advanced', 2, '2025-08-18 06:39:33', '2025-08-18 06:39:33'),
+(5, 'PHP', 'Expert', 1, '2025-08-18 06:39:45', '2025-08-18 06:39:45');
 
 -- --------------------------------------------------------
 
@@ -194,6 +235,12 @@ ALTER TABLE `profile`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `projects`
+--
+ALTER TABLE `projects`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `skills`
 --
 ALTER TABLE `skills`
@@ -213,31 +260,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `education`
 --
 ALTER TABLE `education`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `experience`
 --
 ALTER TABLE `experience`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `hobbies`
 --
 ALTER TABLE `hobbies`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `projects`
+--
+ALTER TABLE `projects`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
