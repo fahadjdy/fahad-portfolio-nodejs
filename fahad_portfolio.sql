@@ -40,7 +40,7 @@ CREATE TABLE `education` (
   `order_no` int DEFAULT '0',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `education`
@@ -67,7 +67,7 @@ CREATE TABLE `experience` (
   `order_no` int UNSIGNED DEFAULT '0',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `experience`
@@ -89,7 +89,7 @@ CREATE TABLE `hobbies` (
   `order_no` int DEFAULT '0' COMMENT 'Sorting order for display',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores personal hobbies for the portfolio';
+)  COMMENT='Stores personal hobbies for the portfolio';
 
 --
 -- Dumping data for table `hobbies`
@@ -106,25 +106,25 @@ INSERT INTO `hobbies` (`id`, `name`, `description`, `order_no`, `created_at`, `u
 
 CREATE TABLE `profile` (
   `id` int NOT NULL,
-  `full_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `full_name` varchar(100) NOT NULL,
   `about` varchar(255) NOT NULL,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `logo` varchar(100) DEFAULT NULL,
   `favicon` varchar(100) DEFAULT NULL,
   `tagline` varchar(255) DEFAULT NULL COMMENT 'Short tagline or bio',
   `dob` date DEFAULT NULL,
   `age` int DEFAULT NULL COMMENT 'in years ',
-  `gender` enum('Male','Female','Other') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `gender` enum('Male','Female','Other') DEFAULT NULL,
   `address` varchar(255) NOT NULL,
-  `nationality` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nationality` varchar(50) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
   `phone` bigint DEFAULT NULL,
-  `website` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `location_city` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `location_country` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  `location_city` varchar(100) DEFAULT NULL,
+  `location_country` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores main profile information';
+)  COMMENT='Stores main profile information';
 
 --
 -- Dumping data for table `profile`
@@ -153,7 +153,7 @@ CREATE TABLE `projects` (
   `is_current` tinyint(1) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `projects`
@@ -170,12 +170,12 @@ INSERT INTO `projects` (`id`, `title`, `description`, `tech_stack`, `link`, `git
 
 CREATE TABLE `skills` (
   `id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '(e.g., JavaScript, MySQL)',
-  `level` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '(e.g., Beginner, Expert, 90%)',
+  `name` varchar(255) NOT NULL COMMENT '(e.g., JavaScript, MySQL)',
+  `level` varchar(50) DEFAULT NULL COMMENT '(e.g., Beginner, Expert, 90%)',
   `order_no` int DEFAULT '0' COMMENT 'Sorting order for display on the portfolio',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores skills for portfolio display';
+)  COMMENT='Stores skills for portfolio display';
 
 --
 -- Dumping data for table `skills`
@@ -197,7 +197,7 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `users`
