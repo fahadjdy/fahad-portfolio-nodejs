@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fahad Jadiya - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+            font-size: 14px;
+        }
+        
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20mm;
+            min-height: 297mm;
+            background: white;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 20px;
+        }
+        
+        .name {
+            font-size: 36px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .title {
+            font-size: 18px;
+            color: #3498db;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #3498db;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .about-text {
+            text-align: justify;
+            line-height: 1.7;
+            color: #444;
+        }
+        
+        .job {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .job:last-child {
+            border-bottom: none;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .job-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .company {
+            font-size: 14px;
+            color: #3498db;
+            font-weight: 500;
+        }
+        
+        .duration {
+            font-size: 12px;
+            color: #777;
+            font-style: italic;
+            margin-top: 2px;
+        }
+        
+        .job-description {
+            margin-top: 8px;
+        }
+        
+        .job-description ul {
+            padding-left: 20px;
+        }
+        
+        .job-description li {
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .skill-category-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .skill-list {
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .education-item {
+            margin-bottom: 12px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .degree {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 15px;
+        }
+        
+        .institution {
+            color: #3498db;
+            font-weight: 500;
+        }
+        
+        .grade {
+            color: #27ae60;
+            font-weight: 500;
+        }
+        
+        @media print {
+            body {
+                font-size: 12px;
+            }
+            
+            .container {
+                padding: 15mm;
+                max-width: none;
+                margin: 0;
+            }
+            
+            .name {
+                font-size: 32px;
+            }
+            
+            .section {
+                margin-bottom: 20px;
+            }
+            
+            .job {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="name">Fahad Jadiya</h1>
+            <p class="title">Senior PHP Developer</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📍</span>
+                    <span>Makarba, Ahmedabad</span>
+                </div>
+                <div class="contact-item">
+                    <span>✉️</span>
+                    <span>fahadjdy12@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <span>7203070468</span>
+                </div>
+                <div class="contact-item">
+                    <span>💼</span>
+                    <span>github.com/fahadjdy/</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Professional Summary</h2>
+            <p class="about-text">
+                Results-driven Senior PHP Developer with over 4 years of hands-on experience in building scalable web applications, APIs, and enterprise solutions. Skilled in PHP, Laravel, Node.js, Vue.js, and modern frontend frameworks with strong problem-solving abilities and a passion for clean, maintainable code. Experienced across multiple industries, contributing to full software development lifecycles, optimizing performance, and delivering user-focused solutions. Thrives in collaborative environments, adapts quickly to new technologies, and aims to create impactful digital experiences.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Work Experience</h2>
+            
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Senior PHP Developer</div>
+                        <div class="company">Techaxion | Makarba, Ahmedabad</div>
+                        <div class="duration">Feb 2023 – Present</div>
+                    </div>
+                </div>
+                <div class="job-description">
+                    <ul>
+                        <li>Lead backend development using Laravel & Node.js for scalable applications</li>
+                        <li>Collaborate with cross-functional teams to design, develop, and deploy solutions</li>
+                        <li>Optimize database queries and API performance for high-traffic applications</li>
+                        <li>Mentor junior developers and contribute to coding standards & best practices</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Developer</div>
+                        <div class="company">Hidden Brains | Ahmedabad</div>
+                        <div class="duration">May 2022 – Jan 2023</div>
+                    </div>
+                </div>
+                <div class="job-description">
+                    <ul>
+                        <li>Developed web applications using Laravel, Vue.js, and CodeIgniter</li>
+                        <li>Implemented RESTful APIs and third-party integrations</li>
+                        <li>Worked closely with clients to gather requirements and deliver tailored solutions</li>
+                        <li>Improved application performance and reduced load times by optimizing backend logic</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">PHP Developer</div>
+                        <div class="company">Namaste Hindustan | Kalupur, Ahmedabad</div>
+                        <div class="duration">Jul 2021 – Apr 2022</div>
+                    </div>
+                </div>
+                <div class="job-description">
+                    <ul>
+                        <li>Built and maintained PHP-based CMS and e-commerce solutions</li>
+                        <li>Customized web features using Laravel, Bootstrap, and Tailwind CSS</li>
+                        <li>Collaborated with design and content teams for seamless UI/UX delivery</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Intern – Website Development</div>
+                        <div class="company">M. Tech Websolutions | Chhapi</div>
+                        <div class="duration">Mar 2019 – Jul 2021</div>
+                    </div>
+                </div>
+                <div class="job-description">
+                    <ul>
+                        <li>Gained practical experience in PHP & web development fundamentals</li>
+                        <li>Assisted in building small-scale websites and internal tools</li>
+                        <li>Learned project lifecycle, debugging, and client handling basics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-category-title">Backend Development</div>
+                    <div class="skill-list">PHP, Laravel, CodeIgniter, Node.js, MySQL</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Frontend Development</div>
+                    <div class="skill-list">Vue.js, HTML, CSS, TailwindCSS, Bootstrap, JavaScript (ES6+)</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Tools & Technologies</div>
+                    <div class="skill-list">Git, REST APIs, Python (Beginner)</div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Soft Skills</div>
+                    <div class="skill-list">Problem-solving, Team Collaboration, Time Management</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="education-item">
+                <div class="degree">Master of Science (Information Technology)</div>
+                <div class="institution">Hemchandracharya North Gujarat University, Patan</div>
+                <div class="grade">SGPA: 8.2</div>
+            </div>
+            <div class="education-item">
+                <div class="degree">Bachelor of Science (Information Technology)</div>
+                <div class="institution">Hemchandracharya North Gujarat University, Patan</div>
+                <div class="grade">SGPA: 8.3</div>
+            </div>
+            <div class="education-item">
+                <div class="degree">Higher Secondary Certificate (Science)</div>
+                <div class="institution">Gujarat Board</div>
+                <div class="grade">80%</div>
+            </div>
+            <div class="education-item">
+                <div class="degree">Secondary School Certificate</div>
+                <div class="institution">Mumbai Board</div>
+                <div class="grade">74.40%</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Print-friendly functionality
+        window.addEventListener('load', function() {
+            // Add print button functionality
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'p') {
+                    window.print();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
