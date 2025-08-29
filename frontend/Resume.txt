@@ -1,0 +1,78 @@
+Resume – Fahad Jadiya
+
+📍 Makarba, Ahmedabad | ✉️  fahadjdy12@gmail.com | 📱 7203070468 | 💼 https://github.com/fahadjdy/
+
+About Me
+
+I am a results-driven Sr. PHP Developer with 4+ years of hands-on experience in building scalable web applications, APIs, and enterprise solutions. Skilled in PHP, Laravel, Node.js, Vue.js, and modern frontend frameworks, I bring strong problem-solving abilities and a passion for clean, maintainable code. My experience spans across multiple industries, where I have contributed to full software development lifecycles, optimized performance, and delivered user-focused solutions. I thrive in collaborative environments, adapt quickly to new technologies, and aim to create impactful digital experiences.
+
+Work Experience
+Sr. PHP Developer
+
+Techaxion | Makarba, Ahmedabad
+Feb 2023 – Present
+
+Leading backend development using Laravel & Node.js for scalable applications.
+
+Collaborating with cross-functional teams to design, develop, and deploy solutions.
+
+Optimized database queries and API performance for high-traffic applications.
+
+Mentored junior developers and contributed to coding standards & best practices.
+
+Developer
+
+Hidden Brains | Ahmedabad
+May 2022 – Jan 2023
+
+Developed web applications using Laravel, Vue.js, and CI.
+
+Implemented RESTful APIs and third-party integrations.
+
+Worked closely with clients to gather requirements and deliver tailored solutions.
+
+Improved application performance and reduced load times by optimizing backend logic.
+
+PHP Developer
+
+Namaste Hindustan | Kalupur, Ahmedabad
+Jul 2021 – Apr 2022
+
+Built and maintained PHP-based CMS and e-commerce solutions.
+
+Customized web features using Laravel, Bootstrap, and Tailwind CSS.
+
+Collaborated with design and content teams for seamless UI/UX delivery.
+
+Internship – Website Development
+
+M. Tech Websolutions | Chhapi
+Mar 2019 – Jul 2021
+
+Gained practical experience in PHP & web development fundamentals.
+
+Assisted in building small-scale websites and internal tools.
+
+Learned project lifecycle, debugging, and client handling basics.
+
+Technical Skills
+
+Backend: PHP, Laravel, CodeIgniter (CI), Node.js
+
+Frontend: Vue.js, HTML, CSS, TailwindCSS, Bootstrap
+
+Databases: MySQL
+
+Others: Git, REST APIs, Python (Beginner), JavaScript (ES6+)
+
+Soft Skills: Problem-solving, Team Collaboration, Time Management
+
+Education
+
+M.Sc. (IT) – 8.2 SGPA – HNGU, Patan
+
+B.Sc. (IT) – 8.3 SGPA – HNGU, Patan
+
+HSC (Science) – 80% – Gujarat
+
+SSC – 74.40% – Mumbai
