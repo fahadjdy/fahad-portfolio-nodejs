@@ -8,3 +8,10 @@ const app = createApp(App); // first create app instance
 app.config.globalProperties.$common = common; // now set global function access
 
 app.use(router).mount('#app'); // finally mount
+
+
+// .env 
+// API_URL=http://localhost:8889/
+// IMAGE_URL=http://localhost:8889/public/
+
+

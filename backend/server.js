@@ -36,3 +36,13 @@ app.use('/public', express.static('public'));
 // Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+
+
+// .env 
+// PORT=8889
+// DB_HOST=192.168.100.46
+// DB_USER=fahad
+// DB_PASSWORD=d2Ip1E]WFmP*@]5t
+// DB_NAME=fahad_portfolio
+// JWT_SECRET=supersecretkey
