@@ -7,5 +7,10 @@ router.use("/experience", require("./experience.routes"));
 router.use("/skills", require("./skills.routes"));
 router.use("/hobbies", require("./hobbies.routes"));
 router.use("/projects", require("./projects.routes"));
+router.use("/test",
+    (req, res) => {
+        res.send("Test Route");
+    }
+);
 
 module.exports = router;
