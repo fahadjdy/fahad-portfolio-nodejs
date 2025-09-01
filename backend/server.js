@@ -8,10 +8,7 @@ dotenv.config();
 const app = express();
 
 // CORS setup
-app.use(cors({
-  origin: 'http://localhost:5173',
-  credentials: false
-}));
+app.use(cors());
 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
