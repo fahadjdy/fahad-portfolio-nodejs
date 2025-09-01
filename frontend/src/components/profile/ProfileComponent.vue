@@ -187,13 +187,13 @@ export default {
           this.success = null;
         }, 3000);
         if (response.data?.image) {
-          this.imagePreview = `http://localhost:8889/public/${response.data.image}`;
+          this.imagePreview = `${import.meta.env.VITE_IMAGE_URL}/${response.data.image}`;
         }
         if (response.data?.favicon) {
-          this.faviconPreview = `http://localhost:8889/public/${response.data.favicon}`;
+          this.faviconPreview = `${import.meta.env.VITE_IMAGE_URL}/${response.data.favicon}`;
         }
         if (response.data?.logo) {
-          this.logoPreview = `http://localhost:8889/public/${response.data.logo}`;
+          this.logoPreview = `${import.meta.env.VITE_IMAGE_URL}/${response.data.logo}`;
         }
       } catch (error) {
         this.error = error.response?.data?.message || 'Failed to update profile.';
@@ -206,13 +206,13 @@ export default {
       this.profile = profileData;
 
       if (this.profile.image) {
-        this.imagePreview = `http://localhost:8889/public/${this.profile.image}`;
+        this.imagePreview = `${import.meta.env.VITE_IMAGE_URL}/${this.profile.image}`;
       }
       if (this.profile.favicon) {
-        this.faviconPreview = `http://localhost:8889/public/${this.profile.favicon}`;
+        this.faviconPreview = `${import.meta.env.VITE_IMAGE_URL}/${this.profile.favicon}`;
       }
       if (this.profile.logo) {
-        this.logoPreview = `http://localhost:8889/public/${this.profile.logo}`;
+        this.logoPreview = `${import.meta.env.VITE_IMAGE_URL}/${this.profile.logo}`;
       }
     } catch (error) {
       this.error = 'Failed to load profile data.';

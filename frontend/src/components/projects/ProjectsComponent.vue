@@ -59,7 +59,7 @@
               class="w-full px-4 py-2 ..."
             />
             <div class="mt-2 flex flex-wrap gap-2">
-              <img v-if="isEditing" :src="`http://localhost:8889/public/${project.image}`"
+              <img v-if="isEditing" :src="`${imageBaseUrl}/${project.image}`"
                 class="w-16 h-16 object-cover rounded border border-gray-300" />
             </div>
           </div>
@@ -136,7 +136,7 @@
           </div>
 
           <div v-if="proj.image" class="flex items-center gap-2">
-            <img  :src="`http://localhost:8889/public/${proj.image}`" 
+            <img  :src="`${imageBaseUrl}/${proj.image}`" 
               class="w-10 h-10 object-cover rounded-full border border-gray-300" />
           </div>
 
@@ -165,6 +165,7 @@ import { formatDateForInput } from "../../utils/common.js";
 export default {
   data() {
     return {
+      imageBaseUrl: import.meta.env.VITE_IMAGE_URL,
       project: {
         id: null,
         title: "",

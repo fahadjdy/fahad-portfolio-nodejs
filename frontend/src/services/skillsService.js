@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8889/fahad-jadiya/skills";
+const API_URL = `${import.meta.env.VITE_API_URL}` + "/skills";
 const token = localStorage.getItem('token');
 
 export default {

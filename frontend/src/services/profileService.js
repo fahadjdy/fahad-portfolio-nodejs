@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8889/fahad-jadiya/profile';
+const API_URL = `${import.meta.env.VITE_API_URL}/profile`;
+
 
 const handleAuthError = (error) => {
   if (error.response && error.response.status === 401) {
